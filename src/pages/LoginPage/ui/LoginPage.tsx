@@ -1,5 +1,10 @@
 import type { FC } from 'react';
+import { LoginForm } from '../../../entities/LoginForm';
 
 export const LoginPage: FC = () => {
-  return <>Login Page</>;
+  return (
+    <div>
+      <LoginForm />
+    </div>
+  );
 };
