@@ -8,13 +8,17 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   theme?: InputTheme;
 }
 
-export const Input: FC<InputProps> = ({
-  theme = InputTheme.PRIMARY,
-  type = 'text'
-}: InputProps) => {
+export const Input: FC<InputProps> = (props: InputProps) => {
+  const { theme = InputTheme.PRIMARY, type = 'text', ...otherProps } = props;
   return (
     <>
-      <input type={type} name="user" id="user" className={`${theme}`} />
+      <input
+        type={type}
+        name="user"
+        id="user"
+        className={`${theme}`}
+        {...otherProps}
+      />
     </>
   );
 };
