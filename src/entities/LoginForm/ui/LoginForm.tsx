@@ -31,10 +31,16 @@ export const LoginForm: FC<LoginFormProps> = ({
   };
 
   return (
-    <form className={`${className}`} onSubmit={handleSubmit(onSubmit)}>
-      <Input title="Логин" {...register('login')} />
-      <Input title="Пароль" {...register('password', { required: true })} />
-      {errors.password && <span>This field is required</span>}
+    <form
+      className={`${className} w-[409px] h-[382px] flex flex-col gap-8 bg-white rounded-2xl justify-center p-8`}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <h2 className="font-bold text-base text-center">Simple Hotel Check</h2>
+      <div className="flex flex-col gap-6">
+        <Input title="Логин" {...register('login')} />
+        <Input title="Пароль" {...register('password', { required: true })} />
+        {errors.password && <span>This field is required</span>}
+      </div>
       <Button type="submit">Войти</Button>
     </form>
   );

@@ -17,8 +17,10 @@ export const Input: FC<RefAttributes<HTMLInputElement> & InputProps> =
   ) {
     return (
       <div className="flex flex-col gap-[7px]">
-        <label className="font-sans text-xs">{title}</label>
-        <input className={theme} {...otherProps} ref={ref} />
+        <label className="font-[Roboto] text-[#424242] font-light text-base">
+          {title}
+        </label>
+        <input className={`${theme} h-[50px]`} {...otherProps} ref={ref} />
       </div>
     );
   });
