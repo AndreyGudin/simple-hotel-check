@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { LikeButton } from '../../../widget/LikeButton';
+import { RatingStars } from '../../../widget/RatingStars';
 
 interface MainPageProps {
   className?: string;
@@ -10,7 +10,7 @@ export const MainPage: FC<MainPageProps> = ({
 }: MainPageProps) => {
   return (
     <div className={`${className}`}>
-      <LikeButton />
+      <RatingStars />
     </div>
   );
 };
