@@ -17,6 +17,7 @@ module.exports = {
     semi: 0,
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/naming-convention': 'warn',
-    '@typescript-eslint/no-confusing-void-expression': 0
+    '@typescript-eslint/no-confusing-void-expression': 0,
+    '@typescript-eslint/promise-function-async': 0
   }
 };
