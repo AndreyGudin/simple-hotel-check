@@ -1,8 +1,12 @@
-import type { HotelsResponse } from '../types/HotelResponse';
+import type { Hotel } from '../types/HotelResponse';
 
-export const getHotelsApi = async (city: string): Promise<HotelsResponse> => {
+export const getHotelsApi = async (
+  city: string,
+  checkIn: string,
+  checkOut: string
+): Promise<Hotel[]> => {
   const response = await fetch(
-    `http://engine.hotellook.com/api/v2/lookup.json?query=${city}&lang=ru&lookFor=both`
+    `http://engine.hotellook.com/api/v2/cache.json?location=${city}&currency=rub&checkIn=${checkIn}&checkOut=${checkOut}&limit=10`
   );
   return await response.json();
 };

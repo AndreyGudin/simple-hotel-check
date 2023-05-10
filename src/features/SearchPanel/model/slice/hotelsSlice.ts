@@ -1,17 +1,27 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
-import type { HotelsSchema } from '../types/HotelsSchema';
+import type { PayloadAction } from '@reduxjs/toolkit';
+
+import type { HotelsSchema, SearchData } from '../types/HotelsSchema';
 
 const initialState: HotelsSchema = {
-  values: []
+  values: [],
+  checkIn: '',
+  count: '',
+  city: ''
 };
 
 export const hotelsSlice = createSlice({
   name: 'hotels',
   initialState,
   reducers: {
-    save: (state, payload) => {
+    save: (state, action) => {
       console.log('first');
-      state.values = [...payload.payload];
+      state.values = [...action.payload];
+    },
+    book: (state, action: PayloadAction<SearchData>) => {
+      state.checkIn = action.payload.checkIn;
+      state.count = action.payload.count;
+      state.city = action.payload.city;
     }
   }
 });
@@ -19,10 +29,12 @@ export const hotelsSlice = createSlice({
 export const GET_HOTELS = 'hotels/getHotels';
 export const getHotels = createAction(
   GET_HOTELS,
-  function prepare(city: string) {
+  function prepare(city: string, checkIn: string, checkOut: string) {
     return {
       payload: {
-        city
+        city,
+        checkIn,
+        checkOut
       }
     };
   }

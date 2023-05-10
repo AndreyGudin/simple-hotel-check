@@ -18,6 +18,13 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/naming-convention': 'warn',
     '@typescript-eslint/no-confusing-void-expression': 0,
-    '@typescript-eslint/promise-function-async': 0
+    '@typescript-eslint/promise-function-async': 0,
+    '@typescript-eslint/strict-boolean-expressions': 0,
+    '@typescript-eslint/no-misused-promises': [
+      'error',
+      {
+        checksVoidReturn: false
+      }
+    ]
   }
 };
