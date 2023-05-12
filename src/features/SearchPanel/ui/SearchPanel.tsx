@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import type { FC } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 
@@ -9,6 +10,7 @@ import { getHotels, hotelsActions } from '../model/slice/hotelsSlice';
 
 import type { SearchData } from '../model/types/HotelsSchema';
 import { getCheckOutDate } from '../model/lib/getCheckOutDate';
+import { getHotelsSearchData } from '../model/selectors/getHotelsSearchData/getHotelsSearchData';
 
 interface SearchPanelProps {
   className?: string;
@@ -21,8 +23,16 @@ export const SearchPanel: FC<SearchPanelProps> = ({
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<SearchData>({ mode: 'onChange' });
+  } = useForm<SearchData>({
+    mode: 'onChange',
+    defaultValues: {
+      city: 'Москва',
+      checkIn: new Date().toUTCString(),
+      count: '1'
+    }
+  });
   const dispatch = useDispatch();
+  const searchData = useSelector(getHotelsSearchData);
   const onSubmit: SubmitHandler<SearchData> = ({ checkIn, count, city }) => {
     const checkOutDate = getCheckOutDate(checkIn, count);
     dispatch(getHotels(city, checkIn, checkOutDate));
@@ -34,6 +44,11 @@ export const SearchPanel: FC<SearchPanelProps> = ({
       })
     );
   };
+
+  useEffect(() => {
+    const checkOutDate = getCheckOutDate(searchData.checkIn, searchData.count);
+    dispatch(getHotels(searchData.city, searchData.checkIn, checkOutDate));
+  }, []);
 
   return (
     <div

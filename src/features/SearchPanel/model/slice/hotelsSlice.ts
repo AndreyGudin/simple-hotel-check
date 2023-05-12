@@ -5,9 +5,9 @@ import type { HotelsSchema, SearchData } from '../types/HotelsSchema';
 
 const initialState: HotelsSchema = {
   values: [],
-  checkIn: '',
-  count: '',
-  city: ''
+  checkIn: new Date().toISOString().split('T')[0],
+  count: '1',
+  city: 'Москва'
 };
 
 export const hotelsSlice = createSlice({
