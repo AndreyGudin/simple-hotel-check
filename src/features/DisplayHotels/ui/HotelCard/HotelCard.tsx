@@ -3,6 +3,7 @@ import type { FC } from 'react';
 import { LikeButton } from '../../../../widget/LikeButton';
 import { RatingStars } from '../../../../widget/RatingStars';
 import HouseIcon from '../../../../shared/assets/icons/house.svg';
+import { Text, TextTheme } from '../../../../shared/ui/Text/Text';
 
 interface HotelCardProps {
   className?: string;
@@ -29,8 +30,11 @@ export const HotelCard: FC<HotelCardProps> = ({
   });
   const numberFormatter = new Intl.NumberFormat('ru');
   const formattedDate = dateFormatter.format(date);
+  const formattedPrice = numberFormatter.format(parseInt(price, 10));
   return (
-    <div className={`${className} flex gap-6 items-center`}>
+    <div
+      className={`${className} flex gap-6 items-center border-b border-[#878787]/5 py-4`}
+    >
       <div className="w-[64px] h-[64px] rounded-full bg-[#41522E]/10 flex items-center justify-center">
         <HouseIcon />
       </div>
@@ -40,18 +44,16 @@ export const HotelCard: FC<HotelCardProps> = ({
           <LikeButton />
         </div>
         <div>
-          <span>{formattedDate}</span>
-          <span>{' - '}</span>
-          <span>{`${bookingCount} день`}</span>
+          <Text text={formattedDate} theme={TextTheme.Light} />
+          <Text text={' - '} theme={TextTheme.Light} />
+          <Text text={`${bookingCount} день`} theme={TextTheme.Light} />
         </div>
         <div>
-          <div className="flex justify-between">
+          <div className="flex gap-2 justify-between mt-[5px]">
             <RatingStars stars={stars} />
-            <div className="flex gap-2">
-              <span>Price</span>
-              <span className="text-[21px]">{`${numberFormatter.format(
-                parseInt(price, 10)
-              )} ₽`}</span>
+            <div className="flex gap-6 items-center">
+              <Text text="Price" theme={TextTheme.Small} />
+              <Text text={`${formattedPrice} ₽`} theme={TextTheme.Normal} />
             </div>
           </div>
         </div>
