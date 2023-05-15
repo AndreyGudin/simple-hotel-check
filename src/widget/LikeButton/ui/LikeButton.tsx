@@ -1,23 +1,27 @@
 import { useState } from 'react';
-
 import type { FC } from 'react';
 
 interface LikeButtonProps {
   className?: string;
+  active?: boolean;
+  onClick: () => void;
 }
 
 export const LikeButton: FC<LikeButtonProps> = ({
-  className = ''
+  className = '',
+  active = false,
+  onClick
 }: LikeButtonProps) => {
-  const [liked, setLiked] = useState<boolean>(false);
+  const [liked, setLiked] = useState<boolean>(active);
   const handleClick = (): void => {
     console.log('click');
+    onClick();
     setLiked((liked) => !liked);
   };
 
   return (
     <svg
-      className={`${className} cursor-pointer`}
+      className={`${className} cursor-pointer w-[23px] h-[20px]`}
       onClick={handleClick}
       width="23"
       height="20"
