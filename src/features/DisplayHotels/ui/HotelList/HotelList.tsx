@@ -8,7 +8,7 @@ import { TitleOfHotelList } from '../TitleOfHotelList/TitleOfHotelList';
 import { Text } from '../../../../shared/ui/Text/Text';
 import { HotelCard } from '../../../../entities/HotelCard';
 import type { Hotel } from '../../../SearchPanel/model/types/HotelResponse';
-import { likedActions } from '../../../../widget/LikeButton';
+import { getFavoriteHotels, likedActions } from '../../../../widget/LikeButton';
 
 interface HotelListProps {
   className?: string;
@@ -18,6 +18,7 @@ export const HotelList: FC<HotelListProps> = ({
   className = ''
 }: HotelListProps) => {
   const hotels = useSelector(getHotelsData);
+  const favorites = useSelector(getFavoriteHotels);
   const dispatch = useDispatch();
   const searchData = useSelector(getHotelsSearchData);
 
@@ -27,6 +28,14 @@ export const HotelList: FC<HotelListProps> = ({
     bookingCount: string
   ): void => {
     dispatch(likedActions.add({ hotel, bookingDate, bookingCount }));
+  };
+
+  const isHotelLiked = (hotel: string): boolean => {
+    const likedHotels = [...favorites];
+    const hotelToSearch = likedHotels.findIndex(
+      (fav) => fav.hotel.hotelName === hotel
+    );
+    return hotelToSearch > -1;
   };
 
   return (
@@ -59,6 +68,7 @@ export const HotelList: FC<HotelListProps> = ({
               bookingCount={searchData.count}
               price={hotel.priceAvg.toString()}
               displayImage={true}
+              liked={isHotelLiked(hotel.hotelName)}
               onLiked={() =>
                 handleLike(hotel, searchData.checkIn, searchData.count)
               }

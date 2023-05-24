@@ -12,7 +12,16 @@ export const likedSlice = createSlice({
   initialState,
   reducers: {
     add: (state, action: PayloadAction<FavoriteHotel>) => {
-      state.liked = [...state.liked, action.payload];
+      const favHotels = [...state.liked];
+      const favHotel = favHotels.findIndex(
+        (fav) => fav.hotel.hotelName === action.payload.hotel.hotelName
+      );
+      if (favHotel > -1) {
+        favHotels.splice(favHotel, 1);
+        state.liked = [...favHotels];
+      } else {
+        state.liked = [...state.liked, action.payload];
+      }
     }
   }
 });
