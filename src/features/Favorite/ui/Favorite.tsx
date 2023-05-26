@@ -6,6 +6,7 @@ import { HotelCard } from '../../../entities/HotelCard';
 import { Text, TextTheme } from '../../../shared/ui/Text/Text';
 import { getHotelsSearchData } from '../../SearchPanel/model/selectors/getHotelsSearchData/getHotelsSearchData';
 import type { Hotel } from '../../SearchPanel/model/types/HotelResponse';
+import { SortSwitcher } from '../../../shared/ui/SortSwitcher/SortSwitcher';
 
 interface FavoriteProps {
   className?: string;
@@ -27,8 +28,13 @@ export const Favorite: FC<FavoriteProps> = ({
   };
 
   return (
-    <div className={'w-[360px] h-[472px] flex flex-col p-8 gap-8 bg-white'}>
+    <div
+      className={
+        'w-[360px] h-[472px] flex flex-col p-8 gap-8 bg-white rounded-2xl'
+      }
+    >
       <Text text="Избранное" theme={TextTheme.Big} />
+      <SortSwitcher text="Рейтинг" />
       <div className="overflow-auto flex-grow scrollbar">
         {favorites.map((favorite) => {
           return (

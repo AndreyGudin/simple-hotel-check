@@ -39,7 +39,7 @@ export const HotelList: FC<HotelListProps> = ({
   };
 
   return (
-    <div className="w-[664px] h-[902px] px-7 py-8 flex flex-col bg-white gap-7">
+    <div className="w-[664px] h-[902px] px-7 py-8 flex flex-col bg-white gap-7 rounded-2xl">
       <TitleOfHotelList />
       <ImageCarousel>
         <img src="https://placehold.co/300x200" alt="placeholder" />

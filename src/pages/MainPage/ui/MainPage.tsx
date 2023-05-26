@@ -14,12 +14,12 @@ export const MainPage: FC<MainPageProps> = ({
   className = ''
 }: MainPageProps) => {
   return (
-    <div className={`${className} bg-[#F4F4F4] min-h-screen flex flex-col`}>
-      <div className="flex justify-between">
+    <div className={`${className} bg-[#F4F4F4] min-h-screen flex flex-col `}>
+      <div className="flex justify-between p-8">
         <Text text="Simple Hotel Check" theme={TextTheme.VeryBig} />
         <Button theme={ButtonTheme.CLEAR}>Выйти</Button>
       </div>
-      <div className="flex gap-6 flex-wrap">
+      <div className="flex gap-6 flex-wrap justify-center">
         <div className="flex flex-col gap-6">
           <SearchPanel />
           <Favorite />

@@ -52,7 +52,7 @@ export const SearchPanel: FC<SearchPanelProps> = ({
 
   return (
     <div
-      className={`w-[360px] h-[410px] bg-white rounded-md p-8 flex flex-col gap-8`}
+      className={`w-[360px] h-[410px] bg-white rounded-2xl p-8 flex flex-col gap-8`}
     >
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <Input
