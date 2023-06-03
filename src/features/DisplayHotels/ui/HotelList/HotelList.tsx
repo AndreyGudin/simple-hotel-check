@@ -54,7 +54,7 @@ export const HotelList: FC<HotelListProps> = ({
       </ImageCarousel>
       <div>
         <Text text="Добавлено в избранное: " />
-        <Text text={`3`} className="font-medium" />
+        <Text text={`${favorites.length}`} className="font-medium" />
         <Text text={` отеля`} />
       </div>
       <div className="flex flex-col gap-3 overflow-auto scrollbar">

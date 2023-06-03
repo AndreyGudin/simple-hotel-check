@@ -15,7 +15,6 @@ export const hotelsSlice = createSlice({
   initialState,
   reducers: {
     save: (state, action) => {
-      console.log('first');
       state.values = [...action.payload];
     },
     book: (state, action: PayloadAction<SearchData>) => {

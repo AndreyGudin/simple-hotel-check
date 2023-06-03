@@ -2,7 +2,7 @@ import type { FC, InputHTMLAttributes, RefAttributes } from 'react';
 import React from 'react';
 
 export enum InputTheme {
-  PRIMARY = 'w-full border border-[##C9CACC] rounded'
+  PRIMARY = 'w-full border border-[#C9CACC] rounded'
 }
 
 export enum TitleTheme {
