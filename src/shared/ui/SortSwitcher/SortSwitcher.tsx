@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { FC } from 'react';
 
 interface SortSwitcherProps {
@@ -14,7 +14,7 @@ export const SortSwitcher: FC<SortSwitcherProps> = ({
   text,
   active = false
 }: SortSwitcherProps) => {
-  const [direction, setDirection] = useState(active);
+  const [direction, setDirection] = useState(true);
   const enabledStyle =
     'border-[#41522E] border rounded w-fit px-2 py-1 text-[#41522E] flex items-center gap-[9px] cursor-pointer';
   const disabledStyle =
@@ -36,6 +36,10 @@ export const SortSwitcher: FC<SortSwitcherProps> = ({
     else onSort('asc');
     setDirection((direction) => !direction);
   };
+
+  useEffect(() => {
+    if (!active) setDirection(true);
+  }, [active]);
 
   return (
     <div className={`${className} ${currentStyle}`} onClick={handleClick}>
