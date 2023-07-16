@@ -1,20 +1,16 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { useForm } from 'react-hook-form';
 
-import type { FC } from 'react';
+import { useEffect, type FC } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 
 import { Button } from '../../../shared/ui/Button/Button';
 import { Input } from '../../../shared/ui/Input/Input';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { type User, userActions, getAuthUserData } from '@/entities/User';
 
 interface LoginFormProps {
   className?: string;
-}
-
-interface UserData {
-  login: string;
-  password: string;
 }
 
 export const LoginForm: FC<LoginFormProps> = ({
@@ -24,11 +20,26 @@ export const LoginForm: FC<LoginFormProps> = ({
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<UserData>({ mode: 'onChange' });
+  } = useForm<User>({ mode: 'onChange' });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const authData = useSelector(getAuthUserData);
 
-  const onSubmit: SubmitHandler<UserData> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<User> = (data) => {
+    dispatch(userActions.setAuthData(data));
+    localStorage.setItem('user', JSON.stringify(data));
+    navigate('/main');
   };
+
+  useEffect(() => {
+    dispatch(userActions.initAuthData());
+  }, []);
+
+  useEffect(() => {
+    if (authData) {
+      navigate('/main');
+    }
+  }, [authData, navigate]);
 
   return (
     <form
@@ -37,7 +48,7 @@ export const LoginForm: FC<LoginFormProps> = ({
     >
       <h2 className="font-bold text-base text-center">Simple Hotel Check</h2>
       <div className="flex flex-col gap-6">
-        <Input title="Логин" {...register('login')} />
+        <Input title="Логин" {...register('username')} />
         <Input title="Пароль" {...register('password', { required: true })} />
         {errors.password && <span>This field is required</span>}
       </div>

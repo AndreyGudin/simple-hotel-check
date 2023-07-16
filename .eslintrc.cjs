@@ -16,6 +16,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
     semi: 0,
     'react/react-in-jsx-scope': 'off',
+    'react/display-name': 0,
     '@typescript-eslint/naming-convention': 'warn',
     '@typescript-eslint/no-confusing-void-expression': 0,
     '@typescript-eslint/promise-function-async': 0,

@@ -1,11 +1,10 @@
-// import { LoginPage } from '../pages/LoginPage';
-import { MainPage } from '../pages/MainPage';
-import { StoreProvider } from './providers/StoreProvider';
+import { Suspense } from 'react';
+import { AppRouter } from './providers/router/ui/AppRouter';
 
 export default function App(): JSX.Element {
   return (
-    <StoreProvider>
-      <MainPage />
-    </StoreProvider>
+    <Suspense fallback={<div>Loading...</div>}>
+      <AppRouter />{' '}
+    </Suspense>
   );
 }
