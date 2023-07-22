@@ -52,6 +52,15 @@
   .scrollbar::-webkit-scrollbar-thumb:hover {
     background: black;
   }
+
+  .input-without-arrows[type='number']::-webkit-outer-spin-button,
+  .input-without-arrows[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .input-without-arrows[type='number'] {
+    -moz-appearance: textfield;
+  }
 }
 
 #root {

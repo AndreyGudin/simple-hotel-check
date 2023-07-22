@@ -11,6 +11,7 @@ export enum TitleTheme {
 }
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  className?: string;
   theme?: InputTheme;
   title: string;
   titleTheme?: TitleTheme;
@@ -19,6 +20,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 export const Input: FC<RefAttributes<HTMLInputElement> & InputProps> =
   React.forwardRef<HTMLInputElement, InputProps>(function Input(
     {
+      className = '',
       theme = InputTheme.PRIMARY,
       title,
       titleTheme = TitleTheme.LIGHT_TITLE,
@@ -34,7 +36,7 @@ export const Input: FC<RefAttributes<HTMLInputElement> & InputProps> =
           {title}
         </label>
         <input
-          className={`${theme} h-[50px] pl-[15px] pr-[9px]`}
+          className={`${className} ${theme} h-[50px] pl-[15px] pr-[9px]`}
           {...otherProps}
           ref={ref}
         />

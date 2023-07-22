@@ -50,12 +50,26 @@ export const LoginForm: FC<LoginFormProps> = ({
       <h2 className="font-bold text-base text-center">Simple Hotel Check</h2>
       <div className="flex flex-col gap-6">
         <Input title="Логин" {...register('username', { required: true })} />
-        {errors.username && (
+        {errors.username?.type === 'required' && (
           <Text theme={TextTheme.Error} text="This field is required" />
         )}
-        <Input title="Пароль" {...register('password', { required: true })} />
-        {errors.password && (
+        <Input
+          type="number"
+          className="input-without-arrows"
+          title="Пароль"
+          {...register('password', {
+            required: true,
+            minLength: 8
+          })}
+        />
+        {errors.password?.type === 'required' && (
           <Text theme={TextTheme.Error} text="This field is required" />
+        )}
+        {errors.password?.type === 'minLength' && (
+          <Text
+            theme={TextTheme.Error}
+            text="Password must be more than 8 digits"
+          />
         )}
       </div>
       <Button type="submit">Войти</Button>
