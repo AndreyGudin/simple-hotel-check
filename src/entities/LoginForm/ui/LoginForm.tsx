@@ -2,12 +2,13 @@ import { useForm } from 'react-hook-form';
 
 import { useEffect, type FC } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
-
-import { Button } from '../../../shared/ui/Button/Button';
-import { Input } from '../../../shared/ui/Input/Input';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { Button } from '@/shared/ui/Button/Button';
+import { Input } from '@/shared/ui/Input/Input';
 import { type User, userActions, getAuthUserData } from '@/entities/User';
+import { Text, TextTheme } from '@/shared/ui/Text/Text';
 
 interface LoginFormProps {
   className?: string;
@@ -43,14 +44,19 @@ export const LoginForm: FC<LoginFormProps> = ({
 
   return (
     <form
-      className={`${className} w-[409px] h-[382px] flex flex-col gap-8 bg-white rounded-2xl justify-center p-8`}
+      className={`${className} w-[409px] min-h-[382px] flex flex-col gap-8 bg-white rounded-2xl justify-center p-8`}
       onSubmit={handleSubmit(onSubmit)}
     >
       <h2 className="font-bold text-base text-center">Simple Hotel Check</h2>
       <div className="flex flex-col gap-6">
-        <Input title="Логин" {...register('username')} />
+        <Input title="Логин" {...register('username', { required: true })} />
+        {errors.username && (
+          <Text theme={TextTheme.Error} text="This field is required" />
+        )}
         <Input title="Пароль" {...register('password', { required: true })} />
-        {errors.password && <span>This field is required</span>}
+        {errors.password && (
+          <Text theme={TextTheme.Error} text="This field is required" />
+        )}
       </div>
       <Button type="submit">Войти</Button>
     </form>

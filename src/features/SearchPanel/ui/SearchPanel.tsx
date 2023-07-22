@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import type { FC } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 
-import { Input, TitleTheme } from '../../../shared/ui/Input/Input';
-import { Button } from '../../../shared/ui/Button/Button';
+import { Input, TitleTheme } from '@/shared/ui/Input/Input';
+import { Button } from '@/shared/ui/Button/Button';
 import { getHotels, hotelsActions } from '../model/slice/hotelsSlice';
 
 import type { SearchData } from '../model/types/HotelsSchema';

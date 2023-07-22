@@ -2,14 +2,16 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { FC } from 'react';
 
-import { getFavoriteHotels, likedActions } from '../../../widget/LikeButton';
-import { HotelCard } from '../../../entities/HotelCard';
-import { Text, TextTheme } from '../../../shared/ui/Text/Text';
-import { getHotelsSearchData } from '../../SearchPanel/model/selectors/getHotelsSearchData/getHotelsSearchData';
-import type { Hotel } from '../../SearchPanel/model/types/HotelResponse';
-import { SortSwitcher } from '../../../shared/ui/SortSwitcher/SortSwitcher';
-import { SortType } from '../../../widget/LikeButton/model/types/likedSchema';
-import { getFavoriteSortType } from '../../../widget/LikeButton/model/selectors/getFavoriteSortType/getFavoriteSortType';
+import {
+  getFavoriteHotels,
+  getFavoriteSortType,
+  likedActions
+} from '@/widget/LikeButton';
+import { HotelCard } from '@/entities/HotelCard';
+import { Text, TextSize } from '@/shared/ui/Text/Text';
+import { SortSwitcher } from '@/shared/ui/SortSwitcher/SortSwitcher';
+import { SortType } from '@/widget/LikeButton/model/types/likedSchema';
+import { type Hotel, getHotelsSearchData } from '@/features/SearchPanel';
 
 interface FavoriteProps {
   className?: string;
@@ -53,7 +55,7 @@ export const Favorite: FC<FavoriteProps> = ({
         'w-[360px] h-[472px] flex flex-col p-8 gap-8 bg-white rounded-2xl'
       }
     >
-      <Text text="Избранное" theme={TextTheme.Big} />
+      <Text text="Избранное" size={TextSize.Big} />
       <div className="flex gap-2">
         <SortSwitcher
           text="Рейтинг"

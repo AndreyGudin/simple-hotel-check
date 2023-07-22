@@ -1,14 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import type { FC } from 'react';
 
-import { getHotelsData } from '../../../SearchPanel/model/selectors/getHotelsData/getHotelsData';
-import { getHotelsSearchData } from '../../../SearchPanel/model/selectors/getHotelsSearchData/getHotelsSearchData';
-import { ImageCarousel } from '../../../../widget/ImageCarousel';
+import { ImageCarousel } from '@/widget/ImageCarousel';
 import { TitleOfHotelList } from '../TitleOfHotelList/TitleOfHotelList';
-import { Text } from '../../../../shared/ui/Text/Text';
-import { HotelCard } from '../../../../entities/HotelCard';
-import type { Hotel } from '../../../SearchPanel/model/types/HotelResponse';
-import { getFavoriteHotels, likedActions } from '../../../../widget/LikeButton';
+import { Text } from '@/shared/ui/Text/Text';
+import { HotelCard } from '@/entities/HotelCard';
+import { getFavoriteHotels, likedActions } from '@/widget/LikeButton';
+import {
+  type Hotel,
+  getHotelsData,
+  getHotelsSearchData
+} from '@/features/SearchPanel';
 
 interface HotelListProps {
   className?: string;

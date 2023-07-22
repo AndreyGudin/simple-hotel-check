@@ -1,9 +1,9 @@
 import type { FC } from 'react';
 
-import { LikeButton } from '../../../widget/LikeButton';
-import { RatingStars } from '../../../widget/RatingStars';
-import HouseIcon from '../../../shared/assets/icons/house.svg';
-import { Text, TextTheme } from '../../../shared/ui/Text/Text';
+import { LikeButton } from '@/widget/LikeButton';
+import { RatingStars } from '@/widget/RatingStars';
+import HouseIcon from '@/shared/assets/icons/house.svg';
+import { Text, TextSize } from '@/shared/ui/Text/Text';
 
 interface HotelCardProps {
   className?: string;
@@ -63,18 +63,18 @@ export const HotelCard: FC<HotelCardProps> = ({
           <LikeButton onClick={() => onLiked()} active={liked} />
         </div>
         <div>
-          <Text text={formattedDate} theme={TextTheme.Light} />
-          <Text text={' - '} theme={TextTheme.Light} />
-          <Text text={`${bookingCount} день`} theme={TextTheme.Light} />
+          <Text text={formattedDate} size={TextSize.Light} />
+          <Text text={' - '} size={TextSize.Light} />
+          <Text text={`${bookingCount} день`} size={TextSize.Light} />
         </div>
         <div>
           <div className="flex gap-2 justify-between mt-[5px]">
             <RatingStars stars={stars} />
             <div className="flex gap-6 items-center">
-              <Text text="Price" theme={TextTheme.Small} />
+              <Text text="Price" size={TextSize.Small} />
               <Text
                 text={`${formattedPrice} ₽`}
-                theme={TextTheme.Normal}
+                size={TextSize.Normal}
                 className="font-medium"
               />
             </div>

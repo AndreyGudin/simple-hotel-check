@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { LoginForm } from '../../../entities/LoginForm';
+import { LoginForm } from '@/entities/LoginForm';
 
 const LoginPage: FC = () => {
   return (
