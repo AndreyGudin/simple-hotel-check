@@ -9,8 +9,10 @@ import { getFavoriteHotels, likedActions } from '@/widget/LikeButton';
 import {
   type Hotel,
   getHotelsData,
-  getHotelsSearchData
+  getHotelsSearchData,
+  getIsLoading
 } from '@/features/SearchPanel';
+import { Spinner } from '@/shared/ui/Spinner/Spinner';
 
 interface HotelListProps {
   className?: string;
@@ -23,6 +25,7 @@ export const HotelList: FC<HotelListProps> = ({
   const favorites = useSelector(getFavoriteHotels);
   const dispatch = useDispatch();
   const searchData = useSelector(getHotelsSearchData);
+  const isLoading = useSelector(getIsLoading);
 
   const handleLike = (
     hotel: Hotel,
@@ -59,24 +62,28 @@ export const HotelList: FC<HotelListProps> = ({
         <Text text={`${favorites.length}`} className="font-medium" />
         <Text text={` отеля`} />
       </div>
-      <div className="flex flex-col gap-3 overflow-auto scrollbar">
-        {hotels.map((hotel) => {
-          return (
-            <HotelCard
-              key={hotel.hotelId}
-              stars={hotel.stars}
-              title={hotel.hotelName}
-              bookingDate={searchData.checkIn}
-              bookingCount={searchData.count}
-              price={hotel.priceAvg.toString()}
-              displayImage={true}
-              liked={isHotelLiked(hotel.hotelName)}
-              onLiked={() =>
-                handleLike(hotel, searchData.checkIn, searchData.count)
-              }
-            />
-          );
-        })}
+      <div className="w-full h-full flex flex-col gap-3 overflow-auto scrollbar">
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          hotels.map((hotel) => {
+            return (
+              <HotelCard
+                key={hotel.hotelId}
+                stars={hotel.stars}
+                title={hotel.hotelName}
+                bookingDate={searchData.checkIn}
+                bookingCount={searchData.count}
+                price={hotel.priceAvg.toString()}
+                displayImage={true}
+                liked={isHotelLiked(hotel.hotelName)}
+                onLiked={() =>
+                  handleLike(hotel, searchData.checkIn, searchData.count)
+                }
+              />
+            );
+          })
+        )}
       </div>
     </div>
   );

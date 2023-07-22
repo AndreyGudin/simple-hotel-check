@@ -1,6 +1,6 @@
 import { userActions } from '@/entities/User';
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
-import { Text, TextTheme } from '@/shared/ui/Text/Text';
+import { Text, TextSize } from '@/shared/ui/Text/Text';
 import { memo, useCallback } from 'react';
 import type { FC } from 'react';
 import { useDispatch } from 'react-redux';
@@ -19,7 +19,7 @@ export const NavBar: FC<NavBarProps> = memo(
 
     return (
       <nav className={`${className} flex justify-between p-8`}>
-        <Text text="Simple Hotel Check" theme={TextTheme.VeryBig} />
+        <Text text="Simple Hotel Check" size={TextSize.VeryBig} />
         <Button theme={ButtonTheme.CLEAR} onClick={handleLogOut}>
           Выйти
         </Button>

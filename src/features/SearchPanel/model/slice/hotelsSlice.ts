@@ -7,7 +7,8 @@ const initialState: HotelsSchema = {
   values: [],
   checkIn: new Date().toISOString().split('T')[0],
   count: '1',
-  city: 'Москва'
+  city: 'Москва',
+  isLoading: false
 };
 
 export const hotelsSlice = createSlice({
@@ -21,6 +22,9 @@ export const hotelsSlice = createSlice({
       state.checkIn = action.payload.checkIn;
       state.count = action.payload.count;
       state.city = action.payload.city;
+    },
+    setIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
     }
   }
 });

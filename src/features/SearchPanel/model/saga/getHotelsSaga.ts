@@ -18,15 +18,17 @@ export function* getHotelsSaga({
   | PutEffect<{
       payload: any;
       type: 'hotels/save';
-    }>,
+    }>
+  | PutEffect<{ payload: boolean; type: 'hotels/setIsLoading' }>,
   void,
   Hotel[]
 > {
+  yield put(hotelsActions.setIsLoading(true));
   const result: Hotel[] = yield getHotelsApi(
     payload.city,
     payload.checkIn,
     payload.checkOut
   );
-  console.log('hotels', result);
   yield put(hotelsActions.save(result));
+  yield put(hotelsActions.setIsLoading(false));
 }

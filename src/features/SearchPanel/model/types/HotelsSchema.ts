@@ -5,6 +5,7 @@ export interface HotelsSchema {
   checkIn: string;
   count: string;
   city: string;
+  isLoading: boolean;
 }
 
 export interface SearchData {
