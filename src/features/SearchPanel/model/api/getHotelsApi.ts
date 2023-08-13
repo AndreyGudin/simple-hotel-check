@@ -6,7 +6,8 @@ export const getHotelsApi = async (
   checkOut: string
 ): Promise<Hotel[]> => {
   const response = await fetch(
-    `http://engine.hotellook.com/api/v2/cache.json?location=${city}&currency=rub&checkIn=${checkIn}&checkOut=${checkOut}&limit=10`
+    `http://engine.hotellook.com/api/v2/cache.json?location=${city}&currency=rub&checkIn=${checkIn}&checkOut=${checkOut}&limit=10`,
+    { referrerPolicy: 'unsafe-url' }
   );
   return await response.json();
 };
