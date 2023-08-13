@@ -16,5 +16,6 @@ export default defineConfig({
     svgr({
       exportAsDefault: true
     })
-  ]
+  ],
+  base: '/simple-hotel-check/'
 });
